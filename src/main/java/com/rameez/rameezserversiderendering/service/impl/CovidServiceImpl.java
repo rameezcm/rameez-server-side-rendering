@@ -7,7 +7,6 @@ public class CovidServiceImpl implements CovidService{
 
 	@Override
 	public CovidModel getCovidCount(String county) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
