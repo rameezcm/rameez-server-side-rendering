@@ -31,7 +31,7 @@ import java.util.Map;
 @Data
 public class CovidModel {
     @JsonProperty("updated")
-    private Integer updated;
+    private String updated;
     @JsonProperty("country")
     private String country;
     @JsonProperty("countryInfo")
@@ -72,12 +72,12 @@ public class CovidModel {
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     @JsonProperty("updated")
-    public Integer getUpdated() {
+    public String getUpdated() {
         return updated;
     }
 
     @JsonProperty("updated")
-    public void setUpdated(Integer updated) {
+    public void setUpdated(String updated) {
         this.updated = updated;
     }
 
