@@ -19,24 +19,6 @@ public class ThymeleafReactiveWebConfig {
     public ThymeleafReactiveWebConfig(ISpringWebFluxTemplateEngine templateEngine) {
         this.templateEngine = templateEngine;
     }
-    
-    @Bean
-    public ITemplateResolver thymeleafTemplateResolver() {
-      final SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
-      resolver.setPrefix("classpath:templates/");
-      resolver.setSuffix(".html");
-      resolver.setTemplateMode(TemplateMode.HTML);
-      resolver.setCacheable(false);
-      resolver.setCheckExistence(false);
-      return resolver;
-    }
-    
-    @Bean
-    public ISpringWebFluxTemplateEngine thymeleafTemplateEngine() {
-      SpringWebFluxTemplateEngine templateEngine = new SpringWebFluxTemplateEngine();
-      templateEngine.setTemplateResolver(thymeleafTemplateResolver());
-      return templateEngine;
-    }
 
     @Bean
     public ThymeleafReactiveViewResolver thymeleafChunkedAndDataDrivenViewResolver() {
