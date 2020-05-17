@@ -2,62 +2,46 @@
 
 <html xmlns:th="http://www.thymeleaf.org">
 
-  <head>
-    <title>Reactive SW-API</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}" type="text/css"/>
-  </head>
+<head>
+  <title>Covid Cases Server Side Rendering</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
 
-  <body>
-    <h2>The reactive universe</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Movie</th>
-          <th>Episode</th>
-          <th>Release Date</th>
-          <th>Vehicles</th>
-        </tr>
-      </thead>
-      <tbody th:remove="all-but-first">
-        <!--/*@thymesVar id="movies" type="com.meistermeier.reactive.Movie[]"*/-->
-        <tr th:each="movie : ${movies}" class="movie-row">
-          <td th:text="${movie.title}" class="movie-title-cell">Return of the Jedi</td>
-          <td th:text="${movie.episodeId}" class="episode-number-cell">6</td>
-          <td th:text="${#dates.format(movie.releaseDate, 'dd.MM.yyyy')}" class="release-date-cell">25.05.1983</td>
-          <td class="vehicles-cell">
-            <ul th:remove="all-but-first">
-              <li th:each="vehicle: ${movie.resolvedVehicles}" th:text="${vehicle.name}">TIE/LN starfighter</li>
-              <li>TIE bomber</li>
-              <li>AT-AT</li>
-              <li>AT-ST</li>
-              <li>Sail barge</li>
-              <li>Bantha-II cargo skiff</li>
-              <li>TIE/IN interceptor</li>
-              <li>Imperial Speeder Bike</li>
-            </ul>
-          </td>
-        </tr>
-        <tr class="movie-row">
-          <td class="movie-title-cell">Return of the Jedi</td>
-          <td class="episode-number-cell">6</td>
-          <td class="release-date-cell">25.05.1983</td>
-          <td class="vehicles-cell">
-            <ul>
-              <li>TIE/LN starfighter</li>
-              <li>TIE bomber</li>
-              <li>AT-AT</li>
-              <li>AT-ST</li>
-              <li>Sail barge</li>
-              <li>Bantha-II cargo skiff</li>
-              <li>TIE/IN interceptor</li>
-              <li>Imperial Speeder Bike</li>
-            </ul>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+<body>
+<h2>Covid Cases Server Side Rendering</h2>
+<table  class="table table-bordered">
+  <thead class="thead-dark">
+  <tr>
+    <th>Country</th>
+    <th>Cases</th>
+    <th>Deaths</th>
+    <th>New Case</th>
+    <th>New Death</th>
+    <th>Recovered</th>
+    <th>Critical</th>
+    <th>Tests</th>
+    <th>Tests Per 1M</th>
+  </tr>
+  </thead>
 
-  </body>
+  <tbody th:remove="all-but-first">
+  <tr th:each="movie : ${covid}">
+    <td th:text="${covid.country}" ></td>
+    <td th:text="${covid.cases}"></td>
+    <td th:text="${covid.deaths }"></td>
+    <td th:text="${covid.todayCases }" ></td>
+    <td th:text="${covid.todayDeaths  }" ></td>
+    <td th:text="${covid.recovered }"></td>
+    <td th:text="${covid.critical }"></td>
+    <td th:text="${covid.tests  }"></td>
+    <td th:text="${covid.testsPerOneMillion  }"></td>
+  </tr>
+  </tbody>
+</table>
+<button type="button" class="btn btn-success" th:onclick="|window.location.href='/IND'|"> Corona Count India</button>
+<button type="button" class="btn btn-danger" th:onclick="|window.location.href='/USA'|"> Corona Count USA</button>
+
+</body>
 
 </html>
