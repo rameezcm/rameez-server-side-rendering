@@ -1,7 +1,6 @@
 package com.rameez.rameezserversiderendering.service.impl;
 
 import com.rameez.rameezserversiderendering.model.CovidModel;
-import com.rameez.rameezserversiderendering.model.Example;
 import com.rameez.rameezserversiderendering.service.CovidService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
@@ -22,8 +21,8 @@ public class CovidServiceImpl implements CovidService{
 	private String allCountries;
 
 	@Override
-	public List<Mono<Example>> getCovidCount(String county) {
-		List<Mono<Example>> result = new ArrayList<>();
+	public List<Mono<CovidModel>> getCovidCount(String county) {
+		List<Mono<CovidModel>> result = new ArrayList<>();
 		result.add(getCount(county));
 		return result;
 	}
@@ -33,17 +32,16 @@ public class CovidServiceImpl implements CovidService{
 		WebClient allCountryclient = WebClient.create(allCountries);
 		Flux<CovidModel> flux = allCountryclient.get()
 				.uri("count")
-				.accept(MediaType.APPLICATION_JSON)
+				.accept(MediaType.ALL)
 				.retrieve()
 				.bodyToFlux(CovidModel.class);
 		return flux;
 	}
 
-	Mono<Example> getCount(String country) {
+	Mono<CovidModel> getCount(String country) {
 		WebClient singleCountryclient = WebClient.create(singleCountry);
 		return singleCountryclient.get().uri(country).accept(MediaType.APPLICATION_JSON)
-				.exchange()
-				.flatMap(clientResponse -> clientResponse.bodyToMono(Example.class));
+				.retrieve().bodyToMono(CovidModel.class);
 	}
 
 }
