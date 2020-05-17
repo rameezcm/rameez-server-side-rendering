@@ -1,6 +1,6 @@
 package com.rameez.rameezserversiderendering.controller;
 
-import com.rameez.rameezserversiderendering.model.Example;
+import com.rameez.rameezserversiderendering.model.CovidModel;
 import com.rameez.rameezserversiderendering.service.CovidService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,17 +22,17 @@ public class SSRController {
 	@RequestMapping("/")
 	public String welcomePage(final Model model) {
 		int elementsOfFluxInSseChunk = 1;
-		List<Mono<Example>> covidList = covidService.getCovidCount("USA");
-		model.addAttribute("covid", new ReactiveDataDriverContextVariable(
+		List<Mono<CovidModel>> covidList = covidService.getCovidCount("USA");
+		model.addAttribute("covids", new ReactiveDataDriverContextVariable(
 				Flux.concat(covidList),
 				elementsOfFluxInSseChunk));
 		return "welcome";
 	}
 
-	@RequestMapping("/rameez/count/{county}")
+	@RequestMapping("/rameez/count/{country}")
 	public String getCovidCountForCountry(final Model model ,@PathVariable(name = "country") String county) {
 		int elementsOfFluxInSseChunk = 1;
-		model.addAttribute("covid", new ReactiveDataDriverContextVariable(
+		model.addAttribute("covids", new ReactiveDataDriverContextVariable(
 				Flux.concat(covidService.getCovidCount(county)),
 				elementsOfFluxInSseChunk));
 		return "welcome";
