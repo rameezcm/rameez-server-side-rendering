@@ -1,9 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.rameez.rameezserversiderendering.RameezServerSideRenderingApplicationTests
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 21.894 s <<< FAILURE! - in com.rameez.rameezserversiderendering.RameezServerSideRenderingApplicationTests
-contextLoads  Time elapsed: 0.016 s  <<< ERROR!
-java.lang.IllegalStateException: Failed to load ApplicationContext
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'thymeleafReactiveWebConfig' defined in file [/home/rameez/Downloads/rameez-server-side-rendering/target/classes/com/rameez/rameezserversiderendering/web/ThymeleafReactiveWebConfig.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'org.thymeleaf.spring5.ISpringWebFluxTemplateEngine' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
-Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'org.thymeleaf.spring5.ISpringWebFluxTemplateEngine' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
-
