@@ -26,7 +26,7 @@
   </thead>
 
   <tbody th:remove="all-but-first">
-  <tr th:each="movie : ${covid}">
+  <tr th:each="covid : ${covids}">
     <td th:text="${covid.country}" ></td>
     <td th:text="${covid.cases}"></td>
     <td th:text="${covid.deaths }"></td>
