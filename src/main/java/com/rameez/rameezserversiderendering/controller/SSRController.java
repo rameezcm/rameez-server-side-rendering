@@ -9,9 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.thymeleaf.spring5.context.webflux.ReactiveDataDriverContextVariable;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
-
-import java.util.List;
 
 @Controller
 public class SSRController {
@@ -22,9 +19,9 @@ public class SSRController {
 	@RequestMapping("/")
 	public String welcomePage(final Model model) {
 		int elementsOfFluxInSseChunk = 1;
-		List<Mono<CovidModel>> covidList = covidService.getCovidCount("USA");
+		Flux<CovidModel> covidList = covidService.getAllCountries();
 		model.addAttribute("covids", new ReactiveDataDriverContextVariable(
-				Flux.concat(covidList),
+				covidList,
 				elementsOfFluxInSseChunk));
 		return "welcome";
 	}
